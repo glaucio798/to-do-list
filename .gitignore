@@ -59,25 +59,25 @@ build/
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-*/node_modules
-/src/main/java/vridge/glaucio/frontend/.pnp
+!**/node_modules
+./backend/src/main/java/bridge/glaucio/frontend/.pnp
 .pnp.js
 
 # testing
-/src/main/java/vridge/glaucio/frontend/coverage
+./backend/src/main/java/bridge/glaucio/frontend/coverage
 
 # production
-/src/main/java/vridge/glaucio/frontend/build
+./backend/src/main/java/bridge/glaucio/frontend/build
 
 # misc
-/src/main/java/vridge/glaucio/frontend/.DS_Store
-/src/main/java/vridge/glaucio/frontend/.env.local
-/src/main/java/vridge/glaucio/frontend/.env.development.local
-/src/main/java/vridge/glaucio/frontend/.env.test.local
-/src/main/java/vridge/glaucio/frontend/.env.production.local
+./backend/src/main/java/bridge/glaucio/frontend/.DS_Store
+./backend/src/main/java/bridge/glaucio/frontend/.env.local
+./backend/src/main/java/bridge/glaucio/frontend/.env.development.local
+./backend/src/main/java/bridge/glaucio/frontend/.env.test.local
+./backend/src/main/java/bridge/glaucio/frontend/.env.production.local
 
-/src/main/java/vridge/glaucio/frontend/npm-debug.log*
-/src/main/java/vridge/glaucio/frontend/yarn-debug.log*
-/src/main/java/vridge/glaucio/frontend/yarn-error.log*
+./backend/src/main/java/bridge/glaucio/frontend/npm-debug.log*
+./backend/src/main/java/bridge/glaucio/frontend/yarn-debug.log*
+./backend/src/main/java/bridge/glaucio/frontend/yarn-error.log*
 
-
+backend/src/main/java/bridge/glaucio/frontend/node_modules
