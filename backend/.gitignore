@@ -31,3 +31,28 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/src/main/java/vridge/glaucio/frontend/node_modules
+/src/main/java/vridge/glaucio/frontend/.pnp
+.pnp.js
+
+# testing
+/src/main/java/vridge/glaucio/frontend/coverage
+
+# production
+/src/main/java/vridge/glaucio/frontend/build
+
+# misc
+/src/main/java/vridge/glaucio/frontend/.DS_Store
+/src/main/java/vridge/glaucio/frontend/.env.local
+/src/main/java/vridge/glaucio/frontend/.env.development.local
+/src/main/java/vridge/glaucio/frontend/.env.test.local
+/src/main/java/vridge/glaucio/frontend/.env.production.local
+
+/src/main/java/vridge/glaucio/frontend/npm-debug.log*
+/src/main/java/vridge/glaucio/frontend/yarn-debug.log*
+/src/main/java/vridge/glaucio/frontend/yarn-error.log*
+
