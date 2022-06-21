@@ -1,0 +1,7 @@
+query Tarefas {
+  tarefas {
+    id
+    descricao
+    responsavel
+  }
+}

@@ -1,0 +1,33 @@
+overwrite: true
+schema: '../../../../resources/graphql/**/*.graphqls'
+documents: 'src/**/*.gql'
+generates:
+  src/graphql/introspection.generated.json:
+    plugins:
+      - introspection
+  src/graphql/fragment-types.generated.json:
+    plugins:
+      - fragment-matcher
+  src/graphql/types.generated.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+    config:
+      preResolveTypes: true
+      exportFragmentSpreadSubTypes: true
+      namingConvention:
+        enumValues: change-case#upperCase
+  src/graphql/hooks.generated.ts:
+    preset: import-types
+    presetConfig:
+      typesPath: ./types.generated
+    plugins:
+      - typescript-react-apollo
+    config:
+      apolloReactHooksImportFrom: '@apollo/react-hooks'
+      withComponent: false
+      withHOC: false
+      withHooks: true
+hooks:
+  afterAllFileWrite:
+    - prettier --write
