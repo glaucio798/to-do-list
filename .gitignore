@@ -21,3 +21,63 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+*/node_modules
+/src/main/java/vridge/glaucio/frontend/.pnp
+.pnp.js
+
+# testing
+/src/main/java/vridge/glaucio/frontend/coverage
+
+# production
+/src/main/java/vridge/glaucio/frontend/build
+
+# misc
+/src/main/java/vridge/glaucio/frontend/.DS_Store
+/src/main/java/vridge/glaucio/frontend/.env.local
+/src/main/java/vridge/glaucio/frontend/.env.development.local
+/src/main/java/vridge/glaucio/frontend/.env.test.local
+/src/main/java/vridge/glaucio/frontend/.env.production.local
+
+/src/main/java/vridge/glaucio/frontend/npm-debug.log*
+/src/main/java/vridge/glaucio/frontend/yarn-debug.log*
+/src/main/java/vridge/glaucio/frontend/yarn-error.log*
+
+
