@@ -1,0 +1,5 @@
+mutation salvarTarefaMutation($input: TarefaQueryInput) {
+  salvarTarefa(input: $input) {
+    id
+  }
+}

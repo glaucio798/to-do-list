@@ -29,6 +29,8 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [ ] Design Geral
 - [ ] Adicionar tarefas
 - [ ] Editar e remover tarefas
+- [ ] Migrar java pra kt
+- [ ] Filtro por responsavel ao recuperar Tarefas
 
 ## 💻 Pré-requisitos
 

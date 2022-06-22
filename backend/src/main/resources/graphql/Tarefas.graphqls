@@ -5,11 +5,14 @@ type Tarefa {
 }
 input TarefaQueryInput {
     id: ID!
-    descricao: String!
-    responsavel: String!
+    descricao: String
+    responsavel: String
 }
-
 
 extend type Query {
     tarefas: [Tarefa]!
+}
+
+extend type Mutation {
+    salvarTarefa(input: TarefaQueryInput): Tarefa
 }

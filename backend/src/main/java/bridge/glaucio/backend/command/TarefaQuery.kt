@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component
 @Component
 class TarefaQuery(private val dao: DAO) {
 
-    fun execute(): List<Tarefa>? =
+    fun execute(): List<Tarefa> =
         dao.queryFactory().selectFrom(tarefa)
-            .fetch();
+            .fetch().orEmpty();
 
 }

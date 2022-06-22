@@ -118,6 +118,12 @@
 			<artifactId>querydsl-jpa</artifactId>
 			<version>4.4.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-maven-noarg -->
+		<dependency>
+			<groupId>org.jetbrains.kotlin</groupId>
+			<artifactId>kotlin-maven-noarg</artifactId>
+			<version>1.6.0</version>
+		</dependency>
 
 	</dependencies>
 
@@ -149,8 +155,20 @@
 					</execution>
 				</executions>
 				<configuration>
+					<compilerPlugins>
+						<plugin>jpa</plugin>
+					</compilerPlugins>
 					<jvmTarget>1.8</jvmTarget>
 				</configuration>
+				<dependencies>
+					<!-- https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-maven-noarg -->
+					<dependency>
+						<groupId>org.jetbrains.kotlin</groupId>
+						<artifactId>kotlin-maven-noarg</artifactId>
+						<version>1.6.0</version>
+					</dependency>
+
+				</dependencies>
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

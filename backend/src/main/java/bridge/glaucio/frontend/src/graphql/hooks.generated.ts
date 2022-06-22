@@ -4,6 +4,52 @@ import gql from 'graphql-tag'
 import * as ApolloReactCommon from '@apollo/react-common'
 import * as ApolloReactHooks from '@apollo/react-hooks'
 
+export const SalvarTarefaMutationDocument = gql`
+  mutation salvarTarefaMutation($input: TarefaQueryInput) {
+    salvarTarefa(input: $input) {
+      id
+    }
+  }
+`
+export type SalvarTarefaMutationMutationFn = ApolloReactCommon.MutationFunction<
+  Types.SalvarTarefaMutationMutation,
+  Types.SalvarTarefaMutationMutationVariables
+>
+
+/**
+ * __useSalvarTarefaMutationMutation__
+ *
+ * To run a mutation, you first call `useSalvarTarefaMutationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSalvarTarefaMutationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [salvarTarefaMutationMutation, { data, loading, error }] = useSalvarTarefaMutationMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useSalvarTarefaMutationMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<
+    Types.SalvarTarefaMutationMutation,
+    Types.SalvarTarefaMutationMutationVariables
+  >
+) {
+  return ApolloReactHooks.useMutation<Types.SalvarTarefaMutationMutation, Types.SalvarTarefaMutationMutationVariables>(
+    SalvarTarefaMutationDocument,
+    baseOptions
+  )
+}
+export type SalvarTarefaMutationMutationHookResult = ReturnType<typeof useSalvarTarefaMutationMutation>
+export type SalvarTarefaMutationMutationResult = ApolloReactCommon.MutationResult<Types.SalvarTarefaMutationMutation>
+export type SalvarTarefaMutationMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  Types.SalvarTarefaMutationMutation,
+  Types.SalvarTarefaMutationMutationVariables
+>
 export const TarefasDocument = gql`
   query Tarefas {
     tarefas {

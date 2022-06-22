@@ -1,7 +1,5 @@
 package bridge.glaucio.backend.resolver;
 
-import java.util.List;
-
 import javax.annotation.Nullable;
 
 import lombok.RequiredArgsConstructor;
@@ -15,11 +13,10 @@ import graphql.kickstart.tools.GraphQLQueryResolver;
 
 @Component
 @RequiredArgsConstructor
-public class TarefaQueryResolver implements GraphQLQueryResolver {
+class TarefaQueryResolver(private val tarefaService: TarefaService) : GraphQLQueryResolver {
 
-	private final TarefaService tarefaService;
-
-	public List<Tarefa> tarefas() {
-		return this.tarefaService.getTarefas();
+	fun tarefas(): List<Tarefa> {
+		val tarefaList : List<Tarefa> = this.tarefaService.getTarefas().toList();
+		return tarefaList;
 	}
 }

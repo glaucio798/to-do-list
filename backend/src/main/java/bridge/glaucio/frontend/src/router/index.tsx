@@ -7,7 +7,7 @@ function Product() {
  return <h2>This is a page for product with  </h2>;
 }
 
-function AppRouter() {
+export function AppRouter() {
     const history = createBrowserHistory()
     return (
         <Router history={history}>
@@ -16,5 +16,3 @@ function AppRouter() {
         </Router>
     );
 }
-
-export default AppRouter;

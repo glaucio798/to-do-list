@@ -1,5 +1,5 @@
 import React from 'react';
-import Router from './router';
+import { AppRouter as Router } from './router';
 import client from './graphql/client';
 import { ApolloProvider } from '@apollo/react-hooks'
 import './App.css';
