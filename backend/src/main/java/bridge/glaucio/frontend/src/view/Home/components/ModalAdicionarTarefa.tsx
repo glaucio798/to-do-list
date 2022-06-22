@@ -1,44 +1,63 @@
 import { Button, Heading, HFlow, Modal, ModalBody, Cell, Grid, TextField, ModalFooter } from 'bold-ui'
-import React, { useState } from 'react'
-import { useSalvarTarefaMutation } from '../../../graphql/hooks.generated'
+import React from 'react'
+import { useEditTarefaMutation, useSalvarTarefaMutation } from '../../../graphql/hooks.generated'
 import { TarefaQueryInput } from '../../../graphql/types.generated'
 
+export type formStateProps = {
+    id: string,
+    responsavel: string,
+    descricao: string
+}
 export interface ModalAdicionarTarefaProps {
-    onSucess: () => void
+    onSucess: () => void,
+    formState: formStateProps,
+    setFormState: (state: any) => void,
+    action: string,
+    isOpen: boolean,
+    setIsOpen: (isOpen: boolean) => void
 }
 
-export function ModalAdicionarTarefa({ onSucess }: ModalAdicionarTarefaProps) {
-    const [isOpen, setIsOpen] = useState(false)
+export function ModalAdicionarTarefa({ onSucess, formState, setFormState, action, isOpen, setIsOpen }: ModalAdicionarTarefaProps) {
 
     const [salvarTarefa] = useSalvarTarefaMutation()
-
-    const [formState, setFormState] = useState({
-        responsavel: '',
-        descricao: ''
-    })
+    const [editTarefa] = useEditTarefaMutation()
 
     const handleSubmit = () => {
         const tarefa: TarefaQueryInput = {
+            id: formState.id,
             responsavel: formState.responsavel,
             descricao: formState.descricao
         }
 
-        salvarTarefa({
-            variables: {
-                input: tarefa
-            }
-        }).then(() => {
-            setIsOpen(false)
-            onSucess()
-        }).catch(error => {
-            alert(error.message)
-        })
+        if (action === 'ADD') {
+            salvarTarefa({
+                variables: {
+                    input: tarefa
+                }
+            }).then(() => {
+                setIsOpen(false)
+                onSucess()
+            }).catch(error => {
+                alert(error.message)
+            })
+        } else {
+            editTarefa({
+                variables: {
+                    input: tarefa
+                }
+            }).then(() => {
+                setIsOpen(false)
+                onSucess()
+            }).catch(error => {
+                alert(error.message)
+            })
+        }
     }
 
     const handleChange = (name: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
         const el = e.target
 
-        setFormState(state => ({
+        setFormState((state: any) => ({
             ...state,
             [name]: el.value,
         }))
@@ -53,7 +72,7 @@ export function ModalAdicionarTarefa({ onSucess }: ModalAdicionarTarefaProps) {
                 <ModalBody>
                     <HFlow alignItems='center'>
                         <div>
-                            <Heading level={1}>Adicionar tarefa</Heading>
+                            <Heading level={1}>{ action === 'EDIT' ? 'Editar' : 'Adicionar' + JSON.stringify(action) + ' sad ' } tarefa</Heading>
                         </div>
                     </HFlow>
                     <br />

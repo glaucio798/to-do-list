@@ -45,6 +45,51 @@ export type DeleteTarefaMutationOptions = ApolloReactCommon.BaseMutationOptions<
   Types.DeleteTarefaMutation,
   Types.DeleteTarefaMutationVariables
 >
+export const EditTarefaDocument = gql`
+  mutation editTarefa($input: TarefaQueryInput!) {
+    editarTarefa(input: $input) {
+      id
+      responsavel
+      descricao
+    }
+  }
+`
+export type EditTarefaMutationFn = ApolloReactCommon.MutationFunction<
+  Types.EditTarefaMutation,
+  Types.EditTarefaMutationVariables
+>
+
+/**
+ * __useEditTarefaMutation__
+ *
+ * To run a mutation, you first call `useEditTarefaMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useEditTarefaMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [editTarefaMutation, { data, loading, error }] = useEditTarefaMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useEditTarefaMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<Types.EditTarefaMutation, Types.EditTarefaMutationVariables>
+) {
+  return ApolloReactHooks.useMutation<Types.EditTarefaMutation, Types.EditTarefaMutationVariables>(
+    EditTarefaDocument,
+    baseOptions
+  )
+}
+export type EditTarefaMutationHookResult = ReturnType<typeof useEditTarefaMutation>
+export type EditTarefaMutationResult = ApolloReactCommon.MutationResult<Types.EditTarefaMutation>
+export type EditTarefaMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  Types.EditTarefaMutation,
+  Types.EditTarefaMutationVariables
+>
 export const SalvarTarefaDocument = gql`
   mutation salvarTarefa($input: TarefaQueryInput!) {
     salvarTarefa(input: $input) {

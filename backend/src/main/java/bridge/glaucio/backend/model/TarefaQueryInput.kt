@@ -4,7 +4,7 @@ import lombok.Data
 
 @Data
 data class TarefaQueryInput(
-    val id: Long? = null,
-    val descricao: String,
-    val responsavel: String
+    var id: Long? = null,
+    var descricao: String,
+    var responsavel: String
 )

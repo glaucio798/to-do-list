@@ -1,0 +1,7 @@
+mutation editTarefa($input: TarefaQueryInput!) {
+  editarTarefa(input: $input) {
+    id,
+    responsavel,
+    descricao
+  }
+}
