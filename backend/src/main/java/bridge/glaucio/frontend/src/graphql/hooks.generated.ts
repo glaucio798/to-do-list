@@ -4,6 +4,47 @@ import gql from 'graphql-tag'
 import * as ApolloReactCommon from '@apollo/react-common'
 import * as ApolloReactHooks from '@apollo/react-hooks'
 
+export const DeleteTarefaDocument = gql`
+  mutation deleteTarefa($id: ID!) {
+    excluirTarefa(id: $id)
+  }
+`
+export type DeleteTarefaMutationFn = ApolloReactCommon.MutationFunction<
+  Types.DeleteTarefaMutation,
+  Types.DeleteTarefaMutationVariables
+>
+
+/**
+ * __useDeleteTarefaMutation__
+ *
+ * To run a mutation, you first call `useDeleteTarefaMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteTarefaMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteTarefaMutation, { data, loading, error }] = useDeleteTarefaMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteTarefaMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<Types.DeleteTarefaMutation, Types.DeleteTarefaMutationVariables>
+) {
+  return ApolloReactHooks.useMutation<Types.DeleteTarefaMutation, Types.DeleteTarefaMutationVariables>(
+    DeleteTarefaDocument,
+    baseOptions
+  )
+}
+export type DeleteTarefaMutationHookResult = ReturnType<typeof useDeleteTarefaMutation>
+export type DeleteTarefaMutationResult = ApolloReactCommon.MutationResult<Types.DeleteTarefaMutation>
+export type DeleteTarefaMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  Types.DeleteTarefaMutation,
+  Types.DeleteTarefaMutationVariables
+>
 export const SalvarTarefaDocument = gql`
   mutation salvarTarefa($input: TarefaQueryInput!) {
     salvarTarefa(input: $input) {

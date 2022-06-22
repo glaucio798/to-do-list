@@ -15,4 +15,7 @@ class TarefaMutationResolver(private val tarefaService: TarefaService) : GraphQL
 
 		return this.tarefaService.save(input);
 	}
+
+	fun excluirTarefa(id: Long) =
+		this.tarefaService.delete(id);
 }

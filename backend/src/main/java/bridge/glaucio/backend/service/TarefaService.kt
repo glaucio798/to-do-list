@@ -2,6 +2,7 @@ package bridge.glaucio.backend.service;
 
 import bridge.glaucio.backend.command.TarefaInputSave
 import bridge.glaucio.backend.command.TarefaQuery
+import bridge.glaucio.backend.command.tarefaDelete
 import bridge.glaucio.backend.model.Tarefa
 import bridge.glaucio.backend.model.TarefaQueryInput
 import lombok.RequiredArgsConstructor
@@ -12,7 +13,8 @@ import javax.transaction.Transactional
 @RequiredArgsConstructor
 open class TarefaService(
 	private val tarefaQuery: TarefaQuery,
-	private val tarefaInputSave: TarefaInputSave
+	private val tarefaInputSave: TarefaInputSave,
+	private val tarefaDelete: tarefaDelete
 ) {
 
 	open fun getTarefas(): List<Tarefa> {
@@ -20,6 +22,8 @@ open class TarefaService(
 	}
 
 	@Transactional
-	open fun save(input: TarefaQueryInput): Tarefa { return tarefaInputSave.execute(input); }
+	open fun save(input: TarefaQueryInput): Tarefa = tarefaInputSave.execute(input);
 
+	@Transactional
+	open fun delete(id: Long) = tarefaDelete.execute(id)
 }

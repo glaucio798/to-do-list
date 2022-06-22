@@ -1,12 +1,25 @@
 import React, { useState } from "react";
-import { useTarefasQuery, useTarefasResponsaveisQuery } from "../../graphql/hooks.generated";
-import { DataTable } from 'bold-ui'
+import { useTarefasQuery, useTarefasResponsaveisQuery, useDeleteTarefaMutation } from "../../graphql/hooks.generated";
+import { DataTable, Icon, Button } from 'bold-ui'
 import { ModalAdicionarTarefa } from './components/ModalAdicionarTarefa'
 import { Tarefa } from "../../graphql/types.generated"
 
 
 export function Home() {
     const [sort, setSort] = useState(['id'])
+    const [deleteTarefa] = useDeleteTarefaMutation()
+
+    const excluirTarefa = (id: string) => {
+        deleteTarefa({
+            variables: {
+                id
+            }
+        }).then(() => {
+            refetchAll()
+        }).catch(error => {
+            alert(error.message)
+        })
+    }
 
     const {
         data: todosDadosTarefa ,
@@ -58,12 +71,11 @@ export function Home() {
                         {
                             name: 'actions',
                             align: 'right',
-                            render: item => "X"
-                            // render: item => (
-                            //     <Button size='small' skin='ghost'>
-                            //     <Icon icon='penOutline' />
-                            //     </Button>
-                            // ),
+                            render: item => (
+                                <Button onClick={() => excluirTarefa(item.id)} size='small' skin='ghost'>
+                                    <Icon icon='trashFilled' />
+                                </Button>
+                            ),
                         },
                     ]}
                 />
@@ -90,12 +102,11 @@ export function Home() {
                         {
                             name: 'actions',
                             align: 'right',
-                            render: item => "X"
-                            // render: item => (
-                            //     <Button size='small' skin='ghost'>
-                            //     <Icon icon='penOutline' />
-                            //     </Button>
-                            // ),
+                            render: item => (
+                                <Button onClick={() => excluirTarefa(item.id)} size='small' skin='ghost'>
+                                    <Icon icon='trashFilled' />
+                                </Button>
+                            ),
                         },
                     ]}
                 />

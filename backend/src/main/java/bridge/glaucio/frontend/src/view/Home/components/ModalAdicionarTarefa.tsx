@@ -18,8 +18,6 @@ export function ModalAdicionarTarefa({ onSucess }: ModalAdicionarTarefaProps) {
     })
 
     const handleSubmit = () => {
-        alert(JSON.stringify(formState, null, 2))
-
         const tarefa: TarefaQueryInput = {
             responsavel: formState.responsavel,
             descricao: formState.descricao
