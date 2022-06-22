@@ -132,7 +132,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TarefaQueryInput",
+                  "name": "TarefaInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -189,7 +189,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "TarefaQueryInput",
+                    "name": "TarefaInput",
                     "ofType": null
                   }
                 },
@@ -216,7 +216,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "TarefaQueryInput",
+        "name": "TarefaInput",
         "description": null,
         "fields": null,
         "inputFields": [

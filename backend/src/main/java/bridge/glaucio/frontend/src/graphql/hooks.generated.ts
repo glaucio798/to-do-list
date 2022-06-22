@@ -46,7 +46,7 @@ export type DeleteTarefaMutationOptions = ApolloReactCommon.BaseMutationOptions<
   Types.DeleteTarefaMutationVariables
 >
 export const EditTarefaDocument = gql`
-  mutation editTarefa($input: TarefaQueryInput!) {
+  mutation editTarefa($input: TarefaInput!) {
     editarTarefa(input: $input) {
       id
       responsavel
@@ -91,7 +91,7 @@ export type EditTarefaMutationOptions = ApolloReactCommon.BaseMutationOptions<
   Types.EditTarefaMutationVariables
 >
 export const SalvarTarefaDocument = gql`
-  mutation salvarTarefa($input: TarefaQueryInput!) {
+  mutation salvarTarefa($input: TarefaInput!) {
     salvarTarefa(input: $input) {
       id
     }

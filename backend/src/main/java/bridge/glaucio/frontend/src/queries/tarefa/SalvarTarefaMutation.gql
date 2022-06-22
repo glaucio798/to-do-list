@@ -1,4 +1,4 @@
-mutation salvarTarefa($input: TarefaQueryInput!) {
+mutation salvarTarefa($input: TarefaInput!) {
   salvarTarefa(input: $input) {
     id
   }

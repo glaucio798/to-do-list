@@ -75,7 +75,7 @@ export function Home() {
                     </HFlow>
                 </Cell>
                 <Cell xs={10}>
-                    <HFlow>
+                    <HFlow justifyContent='center'>
                         {!todosDadosTarefaLoading && todosDadosTarefa?.tarefas && todosDadosTarefa?.tarefas?.length > 0 &&
                             <DataTable<Tarefa>
                                 rows={todosDadosTarefa.tarefas as Tarefa[]}

@@ -16,7 +16,7 @@ export type Mutation = {
 }
 
 export type MutationEditarTarefaArgs = {
-  input?: Maybe<TarefaQueryInput>
+  input?: Maybe<TarefaInput>
 }
 
 export type MutationExcluirTarefaArgs = {
@@ -24,7 +24,7 @@ export type MutationExcluirTarefaArgs = {
 }
 
 export type MutationSalvarTarefaArgs = {
-  input: TarefaQueryInput
+  input: TarefaInput
 }
 
 export type Query = {
@@ -39,7 +39,7 @@ export type Tarefa = {
   responsavel: Scalars['String']
 }
 
-export type TarefaQueryInput = {
+export type TarefaInput = {
   descricao: Scalars['String']
   id?: Maybe<Scalars['ID']>
   responsavel: Scalars['String']
@@ -52,7 +52,7 @@ export type DeleteTarefaMutationVariables = {
 export type DeleteTarefaMutation = { __typename?: 'Mutation'; excluirTarefa?: Maybe<string> }
 
 export type EditTarefaMutationVariables = {
-  input: TarefaQueryInput
+  input: TarefaInput
 }
 
 export type EditTarefaMutation = {
@@ -61,7 +61,7 @@ export type EditTarefaMutation = {
 }
 
 export type SalvarTarefaMutationVariables = {
-  input: TarefaQueryInput
+  input: TarefaInput
 }
 
 export type SalvarTarefaMutation = { __typename?: 'Mutation'; salvarTarefa: { __typename?: 'Tarefa'; id: string } }

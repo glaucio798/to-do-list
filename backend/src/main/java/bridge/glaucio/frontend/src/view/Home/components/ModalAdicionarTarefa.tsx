@@ -1,7 +1,7 @@
-import { Button, Heading, HFlow, Modal, ModalBody, Cell, Grid, TextField, ModalFooter } from 'bold-ui'
+import { Button, Heading, HFlow, Modal, ModalBody, Cell, Grid, TextField, ModalFooter, TextArea } from 'bold-ui'
 import React from 'react'
 import { useEditTarefaMutation, useSalvarTarefaMutation } from '../../../graphql/hooks.generated'
-import { TarefaQueryInput } from '../../../graphql/types.generated'
+import { TarefaInput } from '../../../graphql/types.generated'
 
 export type formStateProps = {
     id: string,
@@ -23,7 +23,7 @@ export function ModalAdicionarTarefa({ onSucess, formState, setFormState, action
     const [editTarefa] = useEditTarefaMutation()
 
     const handleSubmit = () => {
-        const tarefa: TarefaQueryInput = {
+        const tarefa: TarefaInput = {
             id: formState.id,
             responsavel: formState.responsavel,
             descricao: formState.descricao
@@ -63,6 +63,15 @@ export function ModalAdicionarTarefa({ onSucess, formState, setFormState, action
         }))
     }
 
+    const handleChangeTextArea = (name: string) => (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        const el = e.target
+
+        setFormState((state: any) => ({
+            ...state,
+            [name]: el.value,
+        }))
+    }
+
     return (
         <>
             <Button kind='primary' onClick={() => setIsOpen(true)}>
@@ -72,7 +81,7 @@ export function ModalAdicionarTarefa({ onSucess, formState, setFormState, action
                 <ModalBody>
                     <HFlow alignItems='center'>
                         <div>
-                            <Heading level={1}>{ action === 'EDIT' ? 'Editar' : 'Adicionar' + JSON.stringify(action) + ' sad ' } tarefa</Heading>
+                            <Heading level={1}>{ action === 'EDIT' ? 'Editar' : 'Adicionar' } tarefa</Heading>
                         </div>
                     </HFlow>
                     <br />
@@ -90,13 +99,14 @@ export function ModalAdicionarTarefa({ onSucess, formState, setFormState, action
                                     />
                             </div>
                         </Cell>
-                        <Cell xs={6}>
-                            <TextField
+                        <Cell xs={10}>
+                            <TextArea
+                                rows={6}
                                 name='descricao'
                                 label='Descrição da tarefa'
                                 placeholder='Descrição da tarefa'
                                 value={formState.descricao}
-                                onChange={handleChange('descricao')}
+                                onChange={handleChangeTextArea('descricao')}
                                 required
                                 />
                         </Cell>

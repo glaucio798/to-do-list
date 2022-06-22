@@ -1,4 +1,4 @@
-mutation editTarefa($input: TarefaQueryInput!) {
+mutation editTarefa($input: TarefaInput!) {
   editarTarefa(input: $input) {
     id,
     responsavel,
