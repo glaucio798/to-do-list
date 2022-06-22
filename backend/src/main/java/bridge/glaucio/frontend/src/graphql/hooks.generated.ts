@@ -134,8 +134,8 @@ export type SalvarTarefaMutationOptions = ApolloReactCommon.BaseMutationOptions<
   Types.SalvarTarefaMutationVariables
 >
 export const TarefasDocument = gql`
-  query Tarefas {
-    tarefas {
+  query Tarefas($input: TarefaQueryInput) {
+    tarefas(input: $input) {
       id
       descricao
       responsavel
@@ -155,6 +155,7 @@ export const TarefasDocument = gql`
  * @example
  * const { data, loading, error } = useTarefasQuery({
  *   variables: {
+ *      input: // value for 'input'
  *   },
  * });
  */

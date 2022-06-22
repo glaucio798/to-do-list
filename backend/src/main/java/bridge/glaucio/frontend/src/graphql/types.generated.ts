@@ -32,6 +32,10 @@ export type Query = {
   tarefas: Array<Maybe<Tarefa>>
 }
 
+export type QueryTarefasArgs = {
+  input?: Maybe<TarefaQueryInput>
+}
+
 export type Tarefa = {
   __typename?: 'Tarefa'
   descricao: Scalars['String']
@@ -43,6 +47,10 @@ export type TarefaInput = {
   descricao: Scalars['String']
   id?: Maybe<Scalars['ID']>
   responsavel: Scalars['String']
+}
+
+export type TarefaQueryInput = {
+  responsavel?: Maybe<Scalars['String']>
 }
 
 export type DeleteTarefaMutationVariables = {
@@ -66,7 +74,9 @@ export type SalvarTarefaMutationVariables = {
 
 export type SalvarTarefaMutation = { __typename?: 'Mutation'; salvarTarefa: { __typename?: 'Tarefa'; id: string } }
 
-export type TarefasQueryVariables = {}
+export type TarefasQueryVariables = {
+  input?: Maybe<TarefaQueryInput>
+}
 
 export type TarefasQuery = {
   __typename?: 'Query'

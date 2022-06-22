@@ -6,6 +6,7 @@ import bridge.glaucio.backend.command.tarefaDelete
 import bridge.glaucio.backend.command.tarefaEdit
 import bridge.glaucio.backend.model.Tarefa
 import bridge.glaucio.backend.model.TarefaInput
+import bridge.glaucio.backend.model.TarefaQueryInput
 import lombok.RequiredArgsConstructor
 import org.springframework.stereotype.Component
 import javax.transaction.Transactional
@@ -19,8 +20,8 @@ open class TarefaService(
 	private val tarefaEdit: tarefaEdit
 ) {
 
-	open fun getTarefas(): List<Tarefa> {
-		return tarefaQuery.execute();
+	open fun getTarefas(input: TarefaQueryInput): List<Tarefa> {
+		return tarefaQuery.execute(input);
 	}
 
 	@Transactional

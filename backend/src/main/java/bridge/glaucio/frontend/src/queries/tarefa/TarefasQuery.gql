@@ -1,5 +1,5 @@
-query Tarefas {
-  tarefas {
+query Tarefas($input: TarefaQueryInput) {
+  tarefas(input: $input) {
     id
     descricao
     responsavel

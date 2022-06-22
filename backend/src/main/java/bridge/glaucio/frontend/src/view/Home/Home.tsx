@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTarefasQuery, useDeleteTarefaMutation } from "../../graphql/hooks.generated";
-import { DataTable, Icon, Button, Grid, Cell, HFlow, Heading } from 'bold-ui'
+import { DataTable, Icon, Button, Grid, Cell, HFlow, Heading, TextField } from 'bold-ui'
 import {  ModalAdicionarTarefa } from './components/ModalAdicionarTarefa'
 import { Tarefa } from "../../graphql/types.generated"
 
@@ -11,6 +11,7 @@ export function Home() {
 
     const [isOpen, setIsOpen] = useState(false)
     const [action, setAction] = useState('ADD')
+    const [responsavel, setResponsavel] = useState('')
     const [formState, setFormState] = useState({
         id: '',
         responsavel: '',
@@ -56,7 +57,11 @@ export function Home() {
         refetch: todosDadosTarefaRefetch,
         error,
 
-    } = useTarefasQuery()
+    } = useTarefasQuery({
+        variables: {
+            input: { responsavel: responsavel }, //WIP - filtrar por responsavel
+        }
+    })
 
 
     const refetchAll = () => {
@@ -75,52 +80,62 @@ export function Home() {
                     </HFlow>
                 </Cell>
                 <Cell xs={10}>
-                    <HFlow justifyContent='center'>
-                        {!todosDadosTarefaLoading && todosDadosTarefa?.tarefas && todosDadosTarefa?.tarefas?.length > 0 &&
-                            <DataTable<Tarefa>
-                                rows={todosDadosTarefa.tarefas as Tarefa[]}
-                                sort={sort}
-                                onSortChange={setSort}
-                                loading={todosDadosTarefaLoading}
-                                columns={[
-                                    {
-                                        name: 'id',
-                                        header: 'ID',
-                                        sortable: true,
-                                        render: item => item.id,
-                                    },
-                                    {
-                                        name: 'responsavel',
-                                        header: 'responsavel',
-                                        render: item => item.responsavel,
-                                    },
-                                    {
-                                        name: 'descricao',
-                                        header: 'Descrição',
-                                        render: item => item.descricao,
-                                    },
-                                    {
-                                        name: 'edit',
-                                        align: 'right',
-                                        render: item => (
-                                            <Button onClick={() => abrirModalEditar(item)} size='small' skin='ghost'>
-                                                <Icon icon='penFilled' />
-                                            </Button>
-                                        ),
-                                    },
-                                    {
-                                        name: 'delete',
-                                        align: 'right',
-                                        render: item => (
-                                            <Button onClick={() => excluirTarefa(item.id)} size='small' skin='ghost'>
-                                                <Icon icon='trashFilled' />
-                                            </Button>
-                                        ),
-                                    },
-                                ]}
+                    <HFlow >
+                        <TextField
+                            name='responsavel'
+                            label='Buscar por responsável'
+                            placeholder='Responsável'
+                            value={responsavel}
+                            onChange={(val: any) => setResponsavel(val.target.value)}
                             />
-                        }
+                        <Heading level={3}>FALTA FAZER O DEBOUNCE PRA FILTRAR ACHO QUE FALTA SO ISSO MAS TO COM PRIG</Heading>
                     </HFlow>
+                </Cell>
+                <Cell xs={10}>
+                    {!todosDadosTarefaLoading && todosDadosTarefa?.tarefas && todosDadosTarefa?.tarefas?.length > 0 &&
+                        <DataTable<Tarefa>
+                            rows={todosDadosTarefa.tarefas as Tarefa[]}
+                            sort={sort}
+                            onSortChange={setSort}
+                            loading={todosDadosTarefaLoading}
+                            columns={[
+                                {
+                                    name: 'id',
+                                    header: 'ID',
+                                    sortable: true,
+                                    render: item => item.id,
+                                },
+                                {
+                                    name: 'responsavel',
+                                    header: 'responsavel',
+                                    render: item => item.responsavel,
+                                },
+                                {
+                                    name: 'descricao',
+                                    header: 'Descrição',
+                                    render: item => item.descricao,
+                                },
+                                {
+                                    name: 'edit',
+                                    align: 'right',
+                                    render: item => (
+                                        <Button onClick={() => abrirModalEditar(item)} size='small' skin='ghost'>
+                                            <Icon icon='penFilled' />
+                                        </Button>
+                                    ),
+                                },
+                                {
+                                    name: 'delete',
+                                    align: 'right',
+                                    render: item => (
+                                        <Button onClick={() => excluirTarefa(item.id)} size='small' skin='ghost'>
+                                            <Icon icon='trashFilled' />
+                                        </Button>
+                                    ),
+                                },
+                            ]}
+                        />
+                    }
                 </Cell>
                 <Cell xs={10}>
                     <HFlow justifyContent="center">

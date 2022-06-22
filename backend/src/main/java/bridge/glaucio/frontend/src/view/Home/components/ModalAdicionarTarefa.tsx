@@ -91,8 +91,8 @@ export function ModalAdicionarTarefa({ onSucess, formState, setFormState, action
                             <div>
                                 <TextField
                                     name='responsavel'
-                                    label='responsavel do responsavel'
-                                    placeholder='responsavel do responsavel'
+                                    label='Responsável da tarefa'
+                                    placeholder='Responsável'
                                     value={formState.responsavel}
                                     onChange={handleChange('responsavel')}
                                     required
