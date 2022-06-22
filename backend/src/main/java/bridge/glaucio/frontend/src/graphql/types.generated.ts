@@ -10,11 +10,11 @@ export type Scalars = {
 
 export type Mutation = {
   __typename?: 'Mutation'
-  salvarTarefa?: Maybe<Tarefa>
+  salvarTarefa: Tarefa
 }
 
 export type MutationSalvarTarefaArgs = {
-  input?: Maybe<TarefaQueryInput>
+  input: TarefaQueryInput
 }
 
 export type Query = {
@@ -24,38 +24,33 @@ export type Query = {
 
 export type Tarefa = {
   __typename?: 'Tarefa'
-  descricao?: Maybe<Scalars['String']>
-  id?: Maybe<Scalars['ID']>
-  responsavel?: Maybe<Scalars['String']>
+  descricao: Scalars['String']
+  id: Scalars['ID']
+  responsavel: Scalars['String']
 }
 
 export type TarefaQueryInput = {
-  descricao?: Maybe<Scalars['String']>
-  id: Scalars['ID']
-  responsavel?: Maybe<Scalars['String']>
+  descricao: Scalars['String']
+  id?: Maybe<Scalars['ID']>
+  responsavel: Scalars['String']
 }
 
-export type SalvarTarefaMutationMutationVariables = {
-  input?: Maybe<TarefaQueryInput>
+export type SalvarTarefaMutationVariables = {
+  input: TarefaQueryInput
 }
 
-export type SalvarTarefaMutationMutation = {
-  __typename?: 'Mutation'
-  salvarTarefa?: Maybe<{ __typename?: 'Tarefa'; id?: Maybe<string> }>
-}
+export type SalvarTarefaMutation = { __typename?: 'Mutation'; salvarTarefa: { __typename?: 'Tarefa'; id: string } }
 
 export type TarefasQueryVariables = {}
 
 export type TarefasQuery = {
   __typename?: 'Query'
-  tarefas: Array<
-    Maybe<{ __typename?: 'Tarefa'; id?: Maybe<string>; descricao?: Maybe<string>; responsavel?: Maybe<string> }>
-  >
+  tarefas: Array<Maybe<{ __typename?: 'Tarefa'; id: string; descricao: string; responsavel: string }>>
 }
 
 export type TarefasResponsaveisQueryVariables = {}
 
 export type TarefasResponsaveisQuery = {
   __typename?: 'Query'
-  tarefas: Array<Maybe<{ __typename?: 'Tarefa'; id?: Maybe<string>; responsavel?: Maybe<string> }>>
+  tarefas: Array<Maybe<{ __typename?: 'Tarefa'; id: string; responsavel: string }>>
 }

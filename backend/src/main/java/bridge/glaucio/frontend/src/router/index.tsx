@@ -1,6 +1,6 @@
 import React from "react";
 import { Router, Route } from "react-router";
-import { Home } from '../view/Home';
+import { Home } from '../view/Home/Home';
 import { createBrowserHistory } from 'history'
 
 function Product() {

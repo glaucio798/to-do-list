@@ -11,7 +11,7 @@ class TarefaInputSave(private val dao: DAO) {
     fun execute(t: TarefaQueryInput): Tarefa {
         val tarefa = Tarefa(null, t.descricao, t.responsavel);
 
-        dao.persist(tarefa);
+        this.dao.persist(tarefa);
 
         return tarefa;
     }

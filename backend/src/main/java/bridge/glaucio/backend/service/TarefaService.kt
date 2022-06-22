@@ -1,25 +1,25 @@
 package bridge.glaucio.backend.service;
 
-import lombok.RequiredArgsConstructor;
-
-import org.springframework.stereotype.Component;
-
-import bridge.glaucio.backend.command.TarefaInputSave;
-import bridge.glaucio.backend.command.TarefaQuery;
-import bridge.glaucio.backend.model.Tarefa;
-import bridge.glaucio.backend.model.TarefaQueryInput;
+import bridge.glaucio.backend.command.TarefaInputSave
+import bridge.glaucio.backend.command.TarefaQuery
+import bridge.glaucio.backend.model.Tarefa
+import bridge.glaucio.backend.model.TarefaQueryInput
+import lombok.RequiredArgsConstructor
+import org.springframework.stereotype.Component
+import javax.transaction.Transactional
 
 @Component
 @RequiredArgsConstructor
-class TarefaService(
+open class TarefaService(
 	private val tarefaQuery: TarefaQuery,
 	private val tarefaInputSave: TarefaInputSave
 ) {
 
-	fun getTarefas(): List<Tarefa> {
+	open fun getTarefas(): List<Tarefa> {
 		return tarefaQuery.execute();
 	}
 
-	fun save(input: TarefaQueryInput): Tarefa { return tarefaInputSave.execute(input); }
+	@Transactional
+	open fun save(input: TarefaQueryInput): Tarefa { return tarefaInputSave.execute(input); }
 
 }

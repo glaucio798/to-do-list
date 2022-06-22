@@ -1,12 +1,12 @@
 type Tarefa {
-    id: ID
-    responsavel: String
-    descricao: String
+    id: ID!
+    responsavel: String!
+    descricao: String!
 }
 input TarefaQueryInput {
-    id: ID!
-    descricao: String
-    responsavel: String
+    id: ID
+    descricao: String!
+    responsavel: String!
 }
 
 extend type Query {
@@ -14,5 +14,5 @@ extend type Query {
 }
 
 extend type Mutation {
-    salvarTarefa(input: TarefaQueryInput): Tarefa
+    salvarTarefa(input: TarefaQueryInput!): Tarefa!
 }

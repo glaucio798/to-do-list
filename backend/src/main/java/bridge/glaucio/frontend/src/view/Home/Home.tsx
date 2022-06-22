@@ -1,55 +1,40 @@
-import React, { useEffect, useState } from "react";
-import { useTarefasQuery, useTarefasResponsaveisQuery } from "../graphql/hooks.generated";
+import React, { useState } from "react";
+import { useTarefasQuery, useTarefasResponsaveisQuery } from "../../graphql/hooks.generated";
 import { DataTable } from 'bold-ui'
+import { ModalAdicionarTarefa } from './components/ModalAdicionarTarefa'
+import { Tarefa } from "../../graphql/types.generated"
 
-interface apenasResponsavelTarefaType {
-    id?: number,
-    responsavel?: string
-}
-
-interface tarefaType {
-    id?: number,
-    responsavel?: string,
-    descricao?: string
-}
 
 export function Home() {
     const [sort, setSort] = useState(['id'])
-    const [apenasResponsavelTarefaList, setApenasResponsavelTarefaList] = useState<apenasResponsavelTarefaType[]>([])
-    const [tarefaList, setTarefaList] = useState<tarefaType[]>([])
 
     const {
         data: todosDadosTarefa ,
         loading: todosDadosTarefaLoading,
+        refetch: todosDadosTarefaRefetch,
         error,
 
     } = useTarefasQuery()
 
     const {
         data: apenasResponsavelTarefa,
-        loading: apenasResponsavelTarefaLoading
+        loading: apenasResponsavelTarefaLoading,
+        refetch: apenasResponsavelTarefaRefetch,
     } = useTarefasResponsaveisQuery()
 
-    useEffect(() => {
-        if (todosDadosTarefa && todosDadosTarefa?.tarefas){
-            setTarefaList(todosDadosTarefa.tarefas as tarefaType[]);
-        }
-    },[todosDadosTarefa])
-
-    useEffect(() => {
-        if (apenasResponsavelTarefa && apenasResponsavelTarefa?.tarefas){
-            setApenasResponsavelTarefaList(apenasResponsavelTarefa.tarefas as apenasResponsavelTarefaType[]);
-        }
-    },[apenasResponsavelTarefa])
+    const refetchAll = () => {
+        todosDadosTarefaRefetch()
+        apenasResponsavelTarefaRefetch()
+    }
 
     if (error) return (<p> Error! ${error.message}</p>);
     if (apenasResponsavelTarefaLoading || todosDadosTarefaLoading) return (<p>Loading...</p>);
 
     return (
         <>
-            {!todosDadosTarefaLoading && tarefaList?.length > 0 &&
-                <DataTable<tarefaType>
-                    rows={tarefaList}
+            {!todosDadosTarefaLoading && todosDadosTarefa?.tarefas && todosDadosTarefa?.tarefas?.length > 0 &&
+                <DataTable<Tarefa>
+                    rows={todosDadosTarefa.tarefas as Tarefa[]}
                     sort={sort}
                     onSortChange={setSort}
                     loading={todosDadosTarefaLoading}
@@ -84,9 +69,9 @@ export function Home() {
                 />
             }
             <p>------------------------------------------------------------------</p>
-            {apenasResponsavelTarefaList && apenasResponsavelTarefaList?.length > 0 &&
-                <DataTable<apenasResponsavelTarefaType>
-                    rows={apenasResponsavelTarefaList}
+            {!apenasResponsavelTarefaLoading && apenasResponsavelTarefa?.tarefas && apenasResponsavelTarefa?.tarefas?.length > 0 &&
+                <DataTable<Tarefa>
+                    rows={apenasResponsavelTarefa.tarefas as Tarefa[]}
                     sort={sort}
                     onSortChange={setSort}
                     loading={apenasResponsavelTarefaLoading}
@@ -115,6 +100,7 @@ export function Home() {
                     ]}
                 />
             }
+            <ModalAdicionarTarefa onSucess={refetchAll} />
 
         </>
     );
