@@ -3,14 +3,14 @@ import React from 'react'
 import { useEditTarefaMutation, useSalvarTarefaMutation } from '../../../graphql/hooks.generated'
 import { TarefaInput } from '../../../graphql/types.generated'
 
-export type formStateProps = {
+export type FormStateProps = {
     id: string,
     responsavel: string,
     descricao: string
 }
 export interface ModalAdicionarTarefaProps {
     onSucess: () => void,
-    formState: formStateProps,
+    formState: FormStateProps,
     setFormState: (state: any) => void,
     action: string,
     isOpen: boolean,
@@ -118,7 +118,7 @@ export function ModalAdicionarTarefa({ onSucess, formState, setFormState, action
                         <Cell xs={12}>
                             <HFlow justifyContent='flex-end'>
                                 <Button onClick={() => handleSubmit()} kind='primary'>
-                                    ADICIONAR
+                                    { action === 'EDIT' ? 'EDITAR' : 'ADICIONAR' }
                                 </Button>
                             </HFlow>
                         </Cell>

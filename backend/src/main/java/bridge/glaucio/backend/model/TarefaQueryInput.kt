@@ -4,5 +4,5 @@ import lombok.Data
 
 @Data
 data class TarefaQueryInput(
-    var responsavel: String
+    val responsavel: String
 )

@@ -15,7 +15,7 @@ class TarefaQuery(private val dao: DAO) {
         val booleanBuilder = BooleanBuilder()
 
         if(Objects.nonNull(input.responsavel) && input.responsavel.isNotEmpty())
-            booleanBuilder.and(tarefa.responsavel.like('%' + input.responsavel + '%'))
+            booleanBuilder.and(tarefa.responsavel.likeIgnoreCase('%' + input.responsavel + '%'))
 
         return dao.queryFactory().selectFrom(tarefa)
             .where(booleanBuilder)

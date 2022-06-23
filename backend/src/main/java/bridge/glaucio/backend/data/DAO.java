@@ -53,6 +53,10 @@ public class DAO {
 		return entity;
 	}
 
+	public <E> E update(E ob) {
+		return this.em.merge(ob);
+	}
+
 	public <E> E getReference(Class<E> clazz, Object id) {
 		E entity = this.em.getReference(clazz, id);
 		if (entity == null) {

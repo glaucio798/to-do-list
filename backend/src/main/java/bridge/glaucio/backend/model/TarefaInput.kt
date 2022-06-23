@@ -4,7 +4,7 @@ import lombok.Data
 
 @Data
 data class TarefaInput(
-    var id: Long? = null,
-    var descricao: String,
-    var responsavel: String
+    val id: Long? = null,
+    val descricao: String,
+    val responsavel: String
 )

@@ -20,13 +20,13 @@ class Tarefa(
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	var id: Long?=null,
+	val id: Long?=null,
 
 	@Column(name = "DESCRICAO", nullable = false)
-	var descricao: String,
+	val descricao: String,
 
 	@Column(name = "RESPONSAVEL", nullable = false)
-	var responsavel: String,
+	val responsavel: String,
 
 ) : Serializable {
 
