@@ -1,8 +1,8 @@
 package bridge.glaucio.backend.command
 
-import bridge.glaucio.backend.data.DAO
 import bridge.glaucio.backend.model.QTarefa.tarefa
 import bridge.glaucio.backend.model.Tarefa
+import bridge.glaucio.backend.data.DAO
 import bridge.glaucio.backend.model.TarefaQueryInput
 import com.querydsl.core.BooleanBuilder
 import org.springframework.stereotype.Component
